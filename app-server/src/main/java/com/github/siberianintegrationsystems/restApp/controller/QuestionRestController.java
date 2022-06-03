@@ -2,7 +2,12 @@ package com.github.siberianintegrationsystems.restApp.controller;
 
 import com.github.siberianintegrationsystems.restApp.controller.dto.QuestionsItemDTO;
 import com.github.siberianintegrationsystems.restApp.service.QuestionService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -19,4 +24,10 @@ public class QuestionRestController {
     public QuestionsItemDTO create(@RequestBody QuestionsItemDTO dto) {
         return questionService.createQuestion(dto);
     }
+
+    @PutMapping("edit")
+    public QuestionsItemDTO edit(@RequestBody QuestionsItemDTO dto) {
+        return questionService.editQuestion(dto);
+    }
+
 }
