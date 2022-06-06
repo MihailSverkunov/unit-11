@@ -6,8 +6,13 @@ import com.github.siberianintegrationsystems.restApp.data.AnswerRepository;
 import com.github.siberianintegrationsystems.restApp.data.QuestionRepository;
 import com.github.siberianintegrationsystems.restApp.entity.Answer;
 import com.github.siberianintegrationsystems.restApp.entity.Question;
+
 import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -17,8 +22,8 @@ public class QuestionServiceImpl implements QuestionService {
     private final AnswerRepository answerRepository;
 
     public QuestionServiceImpl(
-        QuestionRepository questionRepository,
-        AnswerRepository answerRepository
+            QuestionRepository questionRepository,
+            AnswerRepository answerRepository
     ) {
         this.questionRepository = questionRepository;
         this.answerRepository = answerRepository;
@@ -33,8 +38,8 @@ public class QuestionServiceImpl implements QuestionService {
         createAnswers(dto, question);
 
         return new QuestionsItemDTO(
-            question,
-            answerRepository.findByQuestion(question)
+                question,
+                answerRepository.findByQuestion(question)
         );
     }
 
@@ -42,10 +47,10 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public QuestionsItemDTO editQuestion(QuestionsItemDTO dto) {
         Question question = questionRepository.findById(Long.parseLong(dto.id))
-                                              .orElseThrow(() -> new RuntimeException(String.format(
-                                                  "Не найден вопрос с id '%s'",
-                                                  dto.id
-                                              )));
+                .orElseThrow(() -> new RuntimeException(String.format(
+                        "Не найден вопрос с id '%s'",
+                        dto.id
+                )));
         question.setName(dto.name);
         questionRepository.save(question);
 
@@ -55,9 +60,17 @@ public class QuestionServiceImpl implements QuestionService {
         createAnswers(dto, question);
 
         return new QuestionsItemDTO(
-            question,
-            answerRepository.findByQuestion(question)
+                question,
+                answerRepository.findByQuestion(question)
         );
+    }
+
+    @Override
+    public List<QuestionsItemDTO> getAll() {
+        return questionRepository.findAll().stream().map(question -> new QuestionsItemDTO(
+                question,
+                answerRepository.findByQuestion(question)
+        )).collect(Collectors.toList());
     }
 
 
