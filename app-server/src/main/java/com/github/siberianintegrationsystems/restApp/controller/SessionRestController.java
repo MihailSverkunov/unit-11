@@ -1,9 +1,13 @@
 package com.github.siberianintegrationsystems.restApp.controller;
 
+import com.github.siberianintegrationsystems.restApp.controller.dto.FinishedSessionDTO;
+import com.github.siberianintegrationsystems.restApp.controller.dto.QuestionsItemDTO;
 import com.github.siberianintegrationsystems.restApp.controller.dto.SessionItemDTO;
 import com.github.siberianintegrationsystems.restApp.service.QuestionService;
 import com.github.siberianintegrationsystems.restApp.service.SessionService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -18,8 +22,20 @@ public class SessionRestController {
         this.questionService = questionService;
     }
 
-    @PostMapping("questions-new")
-    public SessionItemDTO create() {
+    @PostMapping
+    public String createSession(@RequestBody FinishedSessionDTO dto) {
+
+        return sessionService.createSession(dto);
+    }
+
+    @GetMapping
+    public SessionItemDTO getSession(@RequestBody FinishedSessionDTO dto) {
+
+        return sessionService.(dto);
+    }
+
+    @GetMapping("questions-new")
+    public List<QuestionsItemDTO> getQuestions() {
         return questionService.getAll();
     }
 

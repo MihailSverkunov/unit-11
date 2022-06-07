@@ -1,11 +1,15 @@
 package com.github.siberianintegrationsystems.restApp.service;
 
-import com.github.siberianintegrationsystems.restApp.controller.dto.QuestionsItemDTO;
+import com.github.siberianintegrationsystems.restApp.controller.dto.FinishedSessionDTO;
 import com.github.siberianintegrationsystems.restApp.controller.dto.SessionItemDTO;
+
+import java.util.List;
 
 public interface SessionService {
 
-    SessionItemDTO createSession(SessionItemDTO dto);
+    String createSession(FinishedSessionDTO dto);
+
+    List<SessionItemDTO> findAll();
 
 
 }

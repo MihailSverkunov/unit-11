@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
+@Setter
+@Getter
 public class Session extends BaseEntity {
 
     @Column
@@ -21,9 +23,5 @@ public class Session extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Double getPercent() {
-        return percent;
     }
 }

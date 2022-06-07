@@ -1,13 +1,11 @@
 package com.github.siberianintegrationsystems.restApp.entity;
 
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-@Getter
-@Setter
 public class SelectedAnswer extends BaseEntity{
 
     @JoinColumn(name = "answer_id")
@@ -17,4 +15,12 @@ public class SelectedAnswer extends BaseEntity{
     @JoinColumn(name = "session_id")
     @ManyToOne(fetch = FetchType.LAZY)
     Session session;
+
+    public void setAnswer(Answer answer) {
+        this.answer = answer;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
 }
