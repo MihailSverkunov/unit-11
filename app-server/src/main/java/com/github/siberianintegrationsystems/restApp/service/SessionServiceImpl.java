@@ -54,8 +54,8 @@ public class SessionServiceImpl implements SessionService {
 
     @Override
     public List<SessionItemDTO> findAll() {
-        //todo вернуть норм
-        return sessionRepository.findAll();
+
+        return sessionRepository.findAll().stream().map(SessionItemDTO::new).collect(Collectors.toList());
     }
 
     private boolean createSelectedAnswer(FinishedAnswerDTO answerDTO, Session session) {

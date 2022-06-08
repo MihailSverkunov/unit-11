@@ -54,7 +54,6 @@ public class QuestionServiceImpl implements QuestionService {
         question.setName(dto.name);
         questionRepository.save(question);
 
-        //TODO Возможно старые ответы пригодятся для сессий, если нет - удалить
         answerRepository.findByQuestion(question).forEach(answer -> answer.setQuestion(null));
 
         createAnswers(dto, question);

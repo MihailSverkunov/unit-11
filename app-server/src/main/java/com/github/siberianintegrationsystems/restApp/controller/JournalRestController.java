@@ -2,11 +2,10 @@ package com.github.siberianintegrationsystems.restApp.controller;
 
 import com.github.siberianintegrationsystems.restApp.controller.dto.*;
 import com.github.siberianintegrationsystems.restApp.service.JournalService;
+import com.github.siberianintegrationsystems.restApp.service.SessionService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin(origins = "*")

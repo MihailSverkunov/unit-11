@@ -14,6 +14,6 @@ public class AnswerItemDTO {
     public AnswerItemDTO(Answer answer) {
         id = answer.getId().toString();
         answerText = answer.getName();
-        //isCorrect = answer.getCorrect();
+        isCorrect = answer.getCorrect();
     }
 }

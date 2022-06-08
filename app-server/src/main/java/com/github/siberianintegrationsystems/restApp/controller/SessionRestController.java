@@ -28,11 +28,7 @@ public class SessionRestController {
         return sessionService.createSession(dto);
     }
 
-    @GetMapping
-    public SessionItemDTO getSession(@RequestBody FinishedSessionDTO dto) {
 
-        return sessionService.(dto);
-    }
 
     @GetMapping("questions-new")
     public List<QuestionsItemDTO> getQuestions() {
